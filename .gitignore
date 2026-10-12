@@ -49,6 +49,5 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-data/raw/
-data/processed/
+
 
