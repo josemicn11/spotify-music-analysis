@@ -23,3 +23,5 @@ spotify_clean <- spotify_clean %>%
 # Guardar el dataset limpio
 dir.create("data/processed", recursive = TRUE, showWarnings = FALSE)
 write_csv(spotify_clean, "data/processed/spotify_clean.csv")
+
+

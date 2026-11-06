@@ -1,0 +1,7 @@
+INTERPRETACION DE LOS RESULTADOS
+
+Danceability y popularidad: r = 0.064; asociacion muy debil sin una direccion lineal clara.
+Duracion y popularidad: r = -0.023; asociacion muy debil sin una direccion lineal clara.
+La mediana de popularidad mas alta aparece en el intervalo 3-4 min y la mas baja en < 2 min.
+
+Estas correlaciones describen asociaciones lineales en este conjunto de datos. No demuestran que la bailabilidad o la duracion causen cambios en la popularidad. Otros factores pueden influir y Pearson puede no reflejar relaciones no lineales.

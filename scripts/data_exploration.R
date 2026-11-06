@@ -5,7 +5,7 @@ library(tidyverse)
 spotify <- read_csv("data/raw/dataset.csv")
 
 # ==========================================
-# 1. EXPLORACIÓN INICIAL
+# 1. EXPLORACION INICIAL
 # ==========================================
 
 # Mostrar las dimensiones del dataset
@@ -17,7 +17,7 @@ colnames(spotify)
 # Mostrar las primeras filas
 head(spotify)
 
-# Obtener un resumen estadístico
+# Obtener un resumen estadistico
 summary(spotify)
 
 
@@ -34,7 +34,7 @@ spotify %>%
 
 
 # ==========================================
-# 3. ANÁLISIS DE DUPLICADOS
+# 3. ANALISIS DE DUPLICADOS
 # ==========================================
 
 # Preparar los datos eliminando valores ausentes y duplicados exactos
@@ -43,7 +43,7 @@ spotify_clean <- spotify %>%
   select(-`...1`) %>%
   distinct()
 
-# Contar las apariciones de cada canción
+# Contar las apariciones de cada cancion
 duplicated_tracks <- spotify_clean %>%
   count(track_id, sort = TRUE) %>%
   filter(n > 1)
@@ -51,7 +51,7 @@ duplicated_tracks <- spotify_clean %>%
 # Contar las canciones que aparecen repetidas
 nrow(duplicated_tracks)
 
-# Mostrar los registros de la canción más repetida
+# Mostrar los registros de la cancion mas repetida
 spotify_clean %>%
   filter(track_id == duplicated_tracks$track_id[1]) %>%
   select(track_name, artists, popularity, track_genre)
@@ -71,7 +71,7 @@ spotify_clean %>%
 # 4. CONSISTENCIA DE LOS DATOS
 # ==========================================
 
-# Seleccionar las características musicales
+# Seleccionar las caracteristicas musicales
 audio_features <- c(
   "duration_ms", "explicit", "danceability",
   "energy", "key", "loudness", "mode",
@@ -80,7 +80,7 @@ audio_features <- c(
   "valence", "tempo", "time_signature"
 )
 
-# Comprobar si las características cambian entre registros de una misma canción
+# Comprobar si las caracteristicas cambian entre registros de una misma cancion
 spotify_clean %>%
   group_by(track_id) %>%
   summarise(
@@ -91,7 +91,7 @@ spotify_clean %>%
     across(all_of(audio_features), ~ sum(.x > 1))
   )
 
-# Comprobar si los nombres, artistas y álbumes son consistentes
+# Comprobar si los nombres, artistas y albumes son consistentes
 spotify_clean %>%
   group_by(track_id) %>%
   summarise(
@@ -108,10 +108,10 @@ spotify_clean %>%
 
 
 # ==========================================
-# 5. ANÁLISIS DE VALORES ANÓMALOS
+# 5. ANALISIS DE VALORES ANOMALOS
 # ==========================================
 
-# Unificar las canciones para analizar los valores anómalos
+# Unificar las canciones para analizar los valores anomalos
 spotify_clean <- spotify_clean %>%
   group_by(track_id) %>%
   summarise(
@@ -132,10 +132,10 @@ spotify_clean %>%
 # Contar canciones con tempo igual a cero
 sum(spotify_clean$tempo == 0)
 
-# Contar canciones con compás igual a cero
+# Contar canciones con compas igual a cero
 sum(spotify_clean$time_signature == 0)
 
-# Analizar la coincidencia de tempo y compás iguales a cero
+# Analizar la coincidencia de tempo y compas iguales a cero
 spotify_clean %>%
   summarise(
     both_zero = sum(tempo == 0 & time_signature == 0),
@@ -145,7 +145,7 @@ spotify_clean %>%
 
 
 # ==========================================
-# 6. VALIDACIÓN FINAL
+# 6. VALIDACION FINAL
 # ==========================================
 
 # Comprobar las dimensiones del dataset
@@ -160,7 +160,7 @@ sum(duplicated(spotify_clean$track_id))
 # Comprobar el rango de popularidad
 range(spotify_clean$popularity)
 
-# Comprobar que no hay duraciones inválidas
+# Comprobar que no hay duraciones invalidas
 sum(spotify_clean$duration_ms <= 0)
 
 # Seleccionar las variables con valores entre 0 y 1
@@ -178,3 +178,4 @@ spotify_clean %>%
       ~ sum(.x < 0 | .x > 1)
     )
   )
+
