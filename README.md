@@ -6,8 +6,6 @@ El análisis parte de **114.000 registros** y trabaja con **89.740 canciones ún
 
 **Autores:** Jacobo San Martín, Josemi Carrascosa y Jairo Alcívar.
 
-**Asignatura:** Data Science — Máster en Ingeniería y Tecnología de Sistemas Software.
-
 ## Preguntas del proyecto
 
 - ¿Qué géneros presentan mayor y menor popularidad media?
